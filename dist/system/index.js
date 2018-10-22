@@ -1,4 +1,4 @@
-System.register(["chartist"], function(exports_1, context_1) {
+System.register(["chartist"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function configure(config) {
@@ -6,11 +6,13 @@ System.register(["chartist"], function(exports_1, context_1) {
     }
     exports_1("configure", configure);
     return {
-        setters:[
-            function (_1) {}],
-        execute: function() {
+        setters: [
+            function (_1) {
+            }
+        ],
+        execute: function () {
         }
-    }
+    };
 });
 
 //# sourceMappingURL=index.js.map

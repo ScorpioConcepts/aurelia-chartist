@@ -17,6 +17,7 @@ gulp.task('build-html', function () {
 
 var tsProjectES6 = typescript.createProject('./tsconfig.json', { typescript: require('typescript') });
 var tsProjectAMD = typescript.createProject('./tsconfig.json', { typescript: require('typescript'), target: 'es5', module: 'amd' });
+var tsProjectDTS = typescript.createProject('./tsconfig.json', { typescript: require('typescript'), target: 'es5', module: 'amd' });
 var tsProjectCJS = typescript.createProject('./tsconfig.json', { typescript: require('typescript'), target: 'es5', module: 'commonjs' });
 var tsProjectSystem = typescript.createProject('./tsconfig.json', { typescript: require('typescript'), target: 'es5', module: 'system' });
 
@@ -47,6 +48,15 @@ gulp.task('build-amd', function () {
     return build(tsProjectAMD, paths.output + 'amd');
 });
 
+gulp.task('build-dts', function() {
+  var tsResult = gulp
+    .src(paths.dtsSrc.concat(paths.source))
+    .pipe(plumber())
+    .pipe(typescript(tsProjectDTS));
+
+  return tsResult.dts.pipe(gulp.dest(paths.output));
+});
+
 gulp.task('build-system', function () {
     return build(tsProjectSystem, paths.output + 'system');
 });
@@ -59,7 +69,7 @@ gulp.task('build-html-system', function () {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-html', 'build-es6', 'build-commonjs', 'build-amd', 'build-system'],
+    ['build-html', 'build-es6', 'build-commonjs', 'build-amd', 'build-dts', 'build-system'],
     callback
   );
 });

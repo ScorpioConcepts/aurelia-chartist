@@ -2,7 +2,7 @@ import { bindable, bindingMode, customElement, inlineView } from "aurelia-framew
 import * as chartist from "chartist";
 
 @customElement("chartist")
-@inlineView(`<template><require from="chartist/dist/chartist.min.css"></require><div class="chart" ref="element"></div></template>`)
+@inlineView(`<template><require from="chartist/dist/chartist.min.css"></require><div class="chart ${this.className}" ref="element"></div></template>`)
 export class ChartistElement {
 
   public element: HTMLElement;
@@ -10,6 +10,9 @@ export class ChartistElement {
 
   @bindable()
   public type: string;
+
+  @bindable()
+  public className: string;
 
   @bindable()
   public data: chartist.IChartistData;

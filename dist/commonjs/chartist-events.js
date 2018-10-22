@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var aurelia_framework_1 = require("aurelia-framework");
 var ChartistEventsAttribute = (function () {
     function ChartistEventsAttribute(element) {
@@ -32,8 +33,8 @@ var ChartistEventsAttribute = (function () {
     ChartistEventsAttribute = __decorate([
         aurelia_framework_1.dynamicOptions(),
         aurelia_framework_1.inject(Element),
-        aurelia_framework_1.customAttribute("chartist-events"), 
-        __metadata('design:paramtypes', [Object])
+        aurelia_framework_1.customAttribute("chartist-events"),
+        __metadata("design:paramtypes", [Object])
     ], ChartistEventsAttribute);
     return ChartistEventsAttribute;
 }());

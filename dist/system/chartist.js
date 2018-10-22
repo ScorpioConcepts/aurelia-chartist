@@ -1,6 +1,5 @@
-System.register(["aurelia-framework", "chartist"], function(exports_1, context_1) {
+System.register(["aurelia-framework", "chartist"], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,17 +9,19 @@ System.register(["aurelia-framework", "chartist"], function(exports_1, context_1
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var aurelia_framework_1, chartist;
-    var ChartistElement;
+    var _this, aurelia_framework_1, chartist, ChartistElement;
+    _this = this;
+    var __moduleName = context_1 && context_1.id;
     return {
-        setters:[
+        setters: [
             function (aurelia_framework_1_1) {
                 aurelia_framework_1 = aurelia_framework_1_1;
             },
             function (chartist_1) {
                 chartist = chartist_1;
-            }],
-        execute: function() {
+            }
+        ],
+        execute: function () {
             ChartistElement = (function () {
                 function ChartistElement() {
                     this.eventsToAttachOnAttached = [];
@@ -70,31 +71,34 @@ System.register(["aurelia-framework", "chartist"], function(exports_1, context_1
                     }
                 };
                 __decorate([
-                    aurelia_framework_1.bindable(), 
-                    __metadata('design:type', String)
+                    aurelia_framework_1.bindable(),
+                    __metadata("design:type", String)
                 ], ChartistElement.prototype, "type", void 0);
                 __decorate([
-                    aurelia_framework_1.bindable(), 
-                    __metadata('design:type', Object)
+                    aurelia_framework_1.bindable(),
+                    __metadata("design:type", String)
+                ], ChartistElement.prototype, "className", void 0);
+                __decorate([
+                    aurelia_framework_1.bindable(),
+                    __metadata("design:type", Object)
                 ], ChartistElement.prototype, "data", void 0);
                 __decorate([
-                    aurelia_framework_1.bindable(), 
-                    __metadata('design:type', Object)
+                    aurelia_framework_1.bindable(),
+                    __metadata("design:type", Object)
                 ], ChartistElement.prototype, "options", void 0);
                 __decorate([
-                    aurelia_framework_1.bindable({ bindingMode: aurelia_framework_1.bindingMode.oneTime }), 
-                    __metadata('design:type', Array)
+                    aurelia_framework_1.bindable({ bindingMode: aurelia_framework_1.bindingMode.oneTime }),
+                    __metadata("design:type", Array)
                 ], ChartistElement.prototype, "responsiveOptions", void 0);
                 ChartistElement = __decorate([
                     aurelia_framework_1.customElement("chartist"),
-                    aurelia_framework_1.inlineView("<template><require from=\"chartist/dist/chartist.min.css\"></require><div class=\"chart\" ref=\"element\"></div></template>"), 
-                    __metadata('design:paramtypes', [])
+                    aurelia_framework_1.inlineView("<template><require from=\"chartist/dist/chartist.min.css\"></require><div class=\"chart " + this.className + "\" ref=\"element\"></div></template>")
                 ], ChartistElement);
                 return ChartistElement;
             }());
             exports_1("ChartistElement", ChartistElement);
         }
-    }
+    };
 });
 
 //# sourceMappingURL=chartist.js.map

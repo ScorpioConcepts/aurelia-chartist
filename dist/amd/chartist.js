@@ -9,6 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 define(["require", "exports", "aurelia-framework", "chartist"], function (require, exports, aurelia_framework_1, chartist) {
     "use strict";
+    var _this = this;
+    Object.defineProperty(exports, "__esModule", { value: true });
     var ChartistElement = (function () {
         function ChartistElement() {
             this.eventsToAttachOnAttached = [];
@@ -58,25 +60,28 @@ define(["require", "exports", "aurelia-framework", "chartist"], function (requir
             }
         };
         __decorate([
-            aurelia_framework_1.bindable(), 
-            __metadata('design:type', String)
+            aurelia_framework_1.bindable(),
+            __metadata("design:type", String)
         ], ChartistElement.prototype, "type", void 0);
         __decorate([
-            aurelia_framework_1.bindable(), 
-            __metadata('design:type', Object)
+            aurelia_framework_1.bindable(),
+            __metadata("design:type", String)
+        ], ChartistElement.prototype, "className", void 0);
+        __decorate([
+            aurelia_framework_1.bindable(),
+            __metadata("design:type", Object)
         ], ChartistElement.prototype, "data", void 0);
         __decorate([
-            aurelia_framework_1.bindable(), 
-            __metadata('design:type', Object)
+            aurelia_framework_1.bindable(),
+            __metadata("design:type", Object)
         ], ChartistElement.prototype, "options", void 0);
         __decorate([
-            aurelia_framework_1.bindable({ bindingMode: aurelia_framework_1.bindingMode.oneTime }), 
-            __metadata('design:type', Array)
+            aurelia_framework_1.bindable({ bindingMode: aurelia_framework_1.bindingMode.oneTime }),
+            __metadata("design:type", Array)
         ], ChartistElement.prototype, "responsiveOptions", void 0);
         ChartistElement = __decorate([
             aurelia_framework_1.customElement("chartist"),
-            aurelia_framework_1.inlineView("<template><require from=\"chartist/dist/chartist.min.css\"></require><div class=\"chart\" ref=\"element\"></div></template>"), 
-            __metadata('design:paramtypes', [])
+            aurelia_framework_1.inlineView("<template><require from=\"chartist/dist/chartist.min.css\"></require><div class=\"chart " + this.className + "\" ref=\"element\"></div></template>")
         ], ChartistElement);
         return ChartistElement;
     }());

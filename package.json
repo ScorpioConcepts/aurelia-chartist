@@ -1,24 +1,28 @@
 {
   "name": "aurelia-chartist",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A plugin to use chartist with Aurelia.",
   "keywords": [
     "aurelia",
     "plugin",
     "chartist"
   ],
-  "homepage": "https://github.com/eriklieben/aurelia-chartist",
+  "homepage": "https://github.com/ScorpioConcepts/aurelia-chartist",
   "bugs": {
-    "url": "https://github.com/eriklieben/aurelia-chartist/issues"
+    "url": "https://github.com/ScorpioConcepts/aurelia-chartist/issues"
   },
   "license": "MIT",
-  "author": "Erik Lieben <erik.lieben@gmail.com> (https://www.eriklieben.com/)",
+  "contributors": [
+    "Erik Lieben <erik.lieben@gmail.com> (https://www.eriklieben.com/)"
+  ],
+  "author": "Sebastian Schocke <sschocke@scorpio-concepts.co.za> (https://www.scorpio-concepts.co.za/)",
   "main": "dist/amd/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eriklieben/aurelia-chartist"
+    "url": "https://github.com/ScorpioConcepts/aurelia-chartist"
   },
   "devDependencies": {
+    "@types/chartist": "^0.9.43",
     "aurelia-tools": "^0.2.4",
     "babel": "^6.5.2",
     "babel-eslint": "^6.1.2",
@@ -72,7 +76,7 @@
       "dist": "dist/amd"
     },
     "dependencies": {
-      "chartist": "^0.9.8"
+      "chartist": "^0.11.0"
     },
     "devDependencies": {
       "aurelia-polyfills": "^1.0.0-beta.1.1.0"
@@ -80,6 +84,6 @@
   },
   "dependencies": {
     "aurelia-framework": "^1.0.2",
-    "chartist": "^0.9.8"
+    "chartist": "^0.11.0"
   }
 }

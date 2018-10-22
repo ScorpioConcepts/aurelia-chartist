@@ -1,6 +1,5 @@
-System.register(["aurelia-framework"], function(exports_1, context_1) {
+System.register(["aurelia-framework"], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,14 +9,15 @@ System.register(["aurelia-framework"], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var aurelia_framework_1;
-    var ChartistEventsAttribute;
+    var aurelia_framework_1, ChartistEventsAttribute;
+    var __moduleName = context_1 && context_1.id;
     return {
-        setters:[
+        setters: [
             function (aurelia_framework_1_1) {
                 aurelia_framework_1 = aurelia_framework_1_1;
-            }],
-        execute: function() {
+            }
+        ],
+        execute: function () {
             ChartistEventsAttribute = (function () {
                 function ChartistEventsAttribute(element) {
                     this.element = element;
@@ -41,14 +41,14 @@ System.register(["aurelia-framework"], function(exports_1, context_1) {
                 ChartistEventsAttribute = __decorate([
                     aurelia_framework_1.dynamicOptions(),
                     aurelia_framework_1.inject(Element),
-                    aurelia_framework_1.customAttribute("chartist-events"), 
-                    __metadata('design:paramtypes', [Object])
+                    aurelia_framework_1.customAttribute("chartist-events"),
+                    __metadata("design:paramtypes", [Object])
                 ], ChartistEventsAttribute);
                 return ChartistEventsAttribute;
             }());
             exports_1("ChartistEventsAttribute", ChartistEventsAttribute);
         }
-    }
+    };
 });
 
 //# sourceMappingURL=chartist-events.js.map
