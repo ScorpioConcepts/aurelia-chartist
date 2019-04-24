@@ -1,15 +1,15 @@
-import { bindable, bindingMode, customElement, inlineView } from "aurelia-framework";
+import { bindable, bindingMode, customElement } from "aurelia-framework";
 import * as chartist from "chartist";
 
 @customElement("chartist")
-@inlineView(`<template><require from="chartist/dist/chartist.min.css"></require><div class="chart ${this.className}" ref="element"></div></template>`)
 export class ChartistElement {
+  public static nextInstance = 1;
 
   public element: HTMLElement;
-  public chart;
+  public chart: chartist.IChartistBase<chartist.IChartOptions>;
 
   @bindable()
-  public type: string;
+  public type: "Bar" | "Line" | "Pie";
 
   @bindable()
   public className: string;
@@ -26,14 +26,15 @@ export class ChartistElement {
   public eventsToAttachOnAttached = [];
 
   private readonly allowedTypes = ["Bar", "Line", "Pie"];
+  private instance: number;
+
+  constructor() {
+    this.instance = ChartistElement.nextInstance++;
+  }
 
   public attached() {
+    this.element = document.getElementById(`ct-chart-${this.instance}`);
     this.renderChart();
-
-    // events that we tried to add before the object was created
-    for (let item of this.eventsToAttachOnAttached) {
-      this.chart.on(item.name, item.value);
-    }
   }
 
   public detached() {
@@ -42,7 +43,7 @@ export class ChartistElement {
     }
   }
 
-  public dataChanged(newValue, oldValue) {
+  public dataChanged() {
     if (this.chart) {
       this.chart.update(this.data, this.options);
     } else {
@@ -50,17 +51,27 @@ export class ChartistElement {
     }
   }
 
-  public optionsChanged(newValue, oldValue) {
+  public optionsChanged() {
     if (this.chart) {
       this.chart.update(this.data, this.options);
     }
   }
 
-  public typeChanged(newValue, oldValue) {
+  public typeChanged() {
     this.renderChart();
   }
 
+  public refresh() {
+    if (this.chart) {
+      this.renderChart();
+    }
+  }
+
   private renderChart() {
+    if (!this.element) {
+      return;
+    }
+
     if (!this.data) {
       console.warn("Chartist data is not set on element");
       return;
@@ -71,11 +82,25 @@ export class ChartistElement {
     }
 
     if (this.allowedTypes.indexOf(this.type) === -1) {
-      throw new Error(`Chartist type must be one of the following values: ${this.allowedTypes.join(", ")}`);
+      throw new Error(
+        `Chartist type must be one of the following values: ${this.allowedTypes.join(
+          ", "
+        )}`
+      );
     }
 
     if (this.element) {
-      this.chart = chartist[this.type](this.element, this.data, this.options, this.responsiveOptions);
+      this.chart = chartist[this.type.toString()](
+        this.element,
+        this.data,
+        this.options,
+        this.responsiveOptions
+      );
+    }
+
+    // events that we tried to add before the object was created
+    for (let item of this.eventsToAttachOnAttached) {
+      this.chart.on(item.name, item.value);
     }
   }
 }
