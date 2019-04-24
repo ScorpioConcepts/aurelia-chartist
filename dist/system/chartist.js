@@ -9,8 +9,7 @@ System.register(["aurelia-framework", "chartist"], function (exports_1, context_
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var _this, aurelia_framework_1, chartist, ChartistElement;
-    _this = this;
+    var aurelia_framework_1, chartist, ChartistElement;
     var __moduleName = context_1 && context_1.id;
     return {
         setters: [
@@ -26,20 +25,19 @@ System.register(["aurelia-framework", "chartist"], function (exports_1, context_
                 function ChartistElement() {
                     this.eventsToAttachOnAttached = [];
                     this.allowedTypes = ["Bar", "Line", "Pie"];
+                    this.instance = ChartistElement_1.nextInstance++;
                 }
+                ChartistElement_1 = ChartistElement;
                 ChartistElement.prototype.attached = function () {
+                    this.element = document.getElementById("ct-chart-" + this.instance);
                     this.renderChart();
-                    for (var _i = 0, _a = this.eventsToAttachOnAttached; _i < _a.length; _i++) {
-                        var item = _a[_i];
-                        this.chart.on(item.name, item.value);
-                    }
                 };
                 ChartistElement.prototype.detached = function () {
                     if (this.chart) {
                         this.chart.detach();
                     }
                 };
-                ChartistElement.prototype.dataChanged = function (newValue, oldValue) {
+                ChartistElement.prototype.dataChanged = function () {
                     if (this.chart) {
                         this.chart.update(this.data, this.options);
                     }
@@ -47,15 +45,23 @@ System.register(["aurelia-framework", "chartist"], function (exports_1, context_
                         this.renderChart();
                     }
                 };
-                ChartistElement.prototype.optionsChanged = function (newValue, oldValue) {
+                ChartistElement.prototype.optionsChanged = function () {
                     if (this.chart) {
                         this.chart.update(this.data, this.options);
                     }
                 };
-                ChartistElement.prototype.typeChanged = function (newValue, oldValue) {
+                ChartistElement.prototype.typeChanged = function () {
                     this.renderChart();
                 };
+                ChartistElement.prototype.refresh = function () {
+                    if (this.chart) {
+                        this.renderChart();
+                    }
+                };
                 ChartistElement.prototype.renderChart = function () {
+                    if (!this.element) {
+                        return;
+                    }
                     if (!this.data) {
                         console.warn("Chartist data is not set on element");
                         return;
@@ -67,9 +73,15 @@ System.register(["aurelia-framework", "chartist"], function (exports_1, context_
                         throw new Error("Chartist type must be one of the following values: " + this.allowedTypes.join(", "));
                     }
                     if (this.element) {
-                        this.chart = chartist[this.type](this.element, this.data, this.options, this.responsiveOptions);
+                        this.chart = chartist[this.type.toString()](this.element, this.data, this.options, this.responsiveOptions);
+                    }
+                    for (var _i = 0, _a = this.eventsToAttachOnAttached; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        this.chart.on(item.name, item.value);
                     }
                 };
+                var ChartistElement_1;
+                ChartistElement.nextInstance = 1;
                 __decorate([
                     aurelia_framework_1.bindable(),
                     __metadata("design:type", String)
@@ -90,9 +102,9 @@ System.register(["aurelia-framework", "chartist"], function (exports_1, context_
                     aurelia_framework_1.bindable({ bindingMode: aurelia_framework_1.bindingMode.oneTime }),
                     __metadata("design:type", Array)
                 ], ChartistElement.prototype, "responsiveOptions", void 0);
-                ChartistElement = __decorate([
+                ChartistElement = ChartistElement_1 = __decorate([
                     aurelia_framework_1.customElement("chartist"),
-                    aurelia_framework_1.inlineView("<template><require from=\"chartist/dist/chartist.min.css\"></require><div class=\"chart " + this.className + "\" ref=\"element\"></div></template>")
+                    __metadata("design:paramtypes", [])
                 ], ChartistElement);
                 return ChartistElement;
             }());
